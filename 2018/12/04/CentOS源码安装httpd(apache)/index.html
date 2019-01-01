@@ -9,7 +9,7 @@
     </title>
     <!-- favicon -->
     
-    <link rel="icon" href="https://cdn.jsdelivr.net/gh/frontendsophie/hexo-theme-autumn@1.0.0/source/img/favicon.ico">
+    <link rel="icon" href="/img/smile.ico">
     
     <link rel="stylesheet" href="/css/style.css">
 
@@ -86,34 +86,58 @@
                 </li>
             </ul>
             <div class="post-content">
-                <h2 id="1-配置安装环境"><a href="#1-配置安装环境" class="headerlink" title="1. 配置安装环境"></a>1. 配置安装环境</h2><h3 id="1-1-准备虚拟机系统CentOS7-5-vmware网络模式设置成桥接模式"><a href="#1-1-准备虚拟机系统CentOS7-5-vmware网络模式设置成桥接模式" class="headerlink" title="1.1 准备虚拟机系统CentOS7.5,vmware网络模式设置成桥接模式"></a>1.1 准备虚拟机系统CentOS7.5,vmware网络模式设置成桥接模式</h3><p><img src="/image/20181204/bridge-pattern.jpg" alt="bridge-pattern"></p>
-<h3 id="1-2-设置开机网卡自动启动"><a href="#1-2-设置开机网卡自动启动" class="headerlink" title="1.2 设置开机网卡自动启动"></a>1.2 设置开机网卡自动启动</h3><p>vi /etc/sysconfig/network-scripts/ifcfg-ens33<br>“onboot=no”改”onboot=yes”,wq保存退出<br><img src="/image/20181204/ifcfg-ens33.jpg" alt="ifcfg-ens33"></p>
-<h3 id="1-3-连接网络"><a href="#1-3-连接网络" class="headerlink" title="1.3  连接网络"></a>1.3  连接网络</h3><p>network service restart     //重启网络服务<br>ip add                     //查询虚拟机ip为192.168.11.143<br>ping <a href="http://www.baidu.com" target="_blank" rel="noopener">www.baidu.com</a>         //确认网络连接<br><img src="/image/20181204/service-network-restart.jpg" alt="service-network-restart"></p>
-<h3 id="1-4-主机安装ssh客户端Termius和CyberDuck"><a href="#1-4-主机安装ssh客户端Termius和CyberDuck" class="headerlink" title="1.4 主机安装ssh客户端Termius和CyberDuck"></a>1.4 主机安装ssh客户端Termius和CyberDuck</h3><p>systemctl status sshd    //查看ssh服务状态 systemctl-status-sshd<br><img src="/image/20181204/systemctl-status-sshd.jpg" alt="systemctl-status-sshd"></p>
-<p>主机安装ssh客户端Termius,用于连接虚拟机命令行<br>选择”New Host”,输入标签,虚拟机ip地址,账户,密码<br><img src="/image/20181204/termius.jpg" alt="termius"></p>
-<p>主机安装ssh客户端CyberDuck,用于管理传输虚拟机文件<br>选择”新建连接”,输入虚拟机ip地址,账户,密码<br><img src="/image/20181204/cyberduck.jpg" alt="cyberduck"></p>
-<h3 id="1-5-安装开发者工具包"><a href="#1-5-安装开发者工具包" class="headerlink" title="1.5 安装开发者工具包"></a>1.5 安装开发者工具包</h3><p>yum groupinstall ‘development tools” -y<br><img src="/image/20181204/development-tools.jpg" alt="development-tools"></p>
-<h2 id="2-安装httpd"><a href="#2-安装httpd" class="headerlink" title="2. 安装httpd"></a>2. 安装httpd</h2><h3 id="2-1-准备httpd安装包"><a href="#2-1-准备httpd安装包" class="headerlink" title="2.1 准备httpd安装包"></a>2.1 准备httpd安装包</h3><p>apche官网下载安装包httpd-2.4.37.tar.gz<br><a href="http://httpd.apache.org/download.cgi#apache24" target="_blank" rel="noopener">http://httpd.apache.org/download.cgi#apache24</a><br><img src="/image/20181204/download_httpd.jpg" alt="download_httpd"></p>
-<p>用CyberDuck把httpd-2.4.37.tar.gz从主机传输到虚拟机/root目录下<br><img src="/image/20181204/cyberduck_httpd.jpg" alt="cyberduck_httpd"></p>
-<p>解压httpd-2.4.37.tar.gz<br>命令: tar -zxf httpd-2.4.37.tar.gz<br><img src="/image/20181204/extract_httpd.jpg" alt="extract_httpd"></p>
-<h3 id="2-2-安装apr和pcre"><a href="#2-2-安装apr和pcre" class="headerlink" title="2.2 安装apr和pcre"></a>2.2 安装apr和pcre</h3><p>./configure命令执行/root/httpd-2.4.37 目录下的configure文件<br>提示缺少apr,apr-util,pcre依赖包,接下来介绍源码/yum安装依赖包的步骤<br><img src="/image/20181204/configure.jpg" alt="configure"></p>
-<h4 id="2-21-源码安装apr-apr-util-pcre"><a href="#2-21-源码安装apr-apr-util-pcre" class="headerlink" title="2.21 源码安装apr,apr-util,pcre"></a>2.21 源码安装apr,apr-util,pcre</h4><p>下载apr和apr-util: <a href="http://apr.apache.org/download.cgi" target="_blank" rel="noopener">http://apr.apache.org/download.cgi</a><br>下载pcre: <a href="https://sourceforge.net/projects/pcre/files/pcre/" target="_blank" rel="noopener">https://sourceforge.net/projects/pcre/files/pcre/</a><br><img src="/image/20181204/download_apr.jpg" alt="download_apr"></p>
-<p>用CyberDuck把压缩包传到虚拟机并解压<br><img src="/image/20181204/extract_apr.jpg" alt="extract_apr"></p>
+                <ul>
+<li><a href="#1">1. 配置安装环境</a><blockquote>
+<ul>
+<li><a href="#1.1">1.1 准备虚拟机系统CentOS7.5,vmware网络模式设置成桥接模式</a></li>
+<li><a href="#1.2">1.2 设置开机网卡自动启动</a></li>
+<li><a href="#1.3">1.3  连接网络</a></li>
+<li><a href="#1.4">1.4 主机安装ssh客户端Termius和CyberDuck</a></li>
+<li><a href="#1.5">1.5 安装开发者工具包</a></li>
+</ul>
+</blockquote>
+</li>
+<li><a href="#2">2. 安装httpd</a><blockquote>
+<ul>
+<li><a href="#2.1">2.1 准备httpd安装包</a></li>
+<li><p><a href="#2.2">2.2 安装apr和pcre</a> </p>
+<blockquote>
+<ul>
+<li><a href="#2.21">2.21 源码安装apr,apr-util,pcre</a></li>
+<li><a href="#2.22">2.22 yum安装apr和pcre</a></li>
+</ul>
+</blockquote>
+</li>
+<li><p><a href="#2.3">2.3 源码安装httpd</a></p>
+</li>
+</ul>
+</blockquote>
+</li>
+<li><a href="#3">3. 主机访问网站</a> </li>
+</ul>
+<p></p><h2 style="display:inline;" id="1">1. 配置安装环境</h2><p></p>
+<p></p><h3 style="display:inline;" id="1.1"> 1.1 准备虚拟机系统CentOS7.5,vmware网络模式设置成桥接模式</h3><br><img src="/image/20181204/bridge-pattern.jpg" alt="bridge-pattern"><p></p>
+<p></p><h3 style="display:inline;" id="1.2">1.2 设置开机网卡自动启动</h3><br><code>vi /etc/sysconfig/network-scripts/ifcfg-ens33</code><br><code>ONBOOT=no</code>改成<code>ONBOOT=yes</code> <code>wq</code>保存退出<br><img src="/image/20181204/ifcfg-ens33.jpg" alt="ifcfg-ens33"><p></p>
+<p></p><h3 style="display:inline;" id="1.3">1.3 连接网络</h3><br><code>network service restart</code> 重启网络服务<br><code>ip add</code> 查询虚拟机ip为192.168.11.143<br><code>ping www.baidu.com</code> 测试网络连接<br><img src="/image/20181204/service-network-restart.jpg" alt="service-network-restart"><p></p>
+<p></p><h3 style="display:inline;" id="1.4">1.4 主机安装ssh客户端Termius和CyberDuck</h3><br><code>systemctl status sshd</code> 查看ssh服务状态<br><img src="/image/20181204/systemctl-status-sshd.jpg" alt="systemctl-status-sshd"><br>主机安装ssh客户端Termius,用于连接虚拟机命令行<br>选择”New Host”,输入标签,虚拟机ip地址,账户,密码<br><img src="/image/20181204/termius.jpg" alt="termius"><br>主机安装ssh客户端CyberDuck,用于管理传输虚拟机文件<br>选择”新建连接”,输入虚拟机ip地址,账户,密码<br><img src="/image/20181204/cyberduck.jpg" alt="cyberduck"><p></p>
+<p></p><h3 style="display:inline;" id="1.5">1.5 安装开发者工具包</h3><br><code>yum groupinstall &#39;development tools&quot; -y</code><br><img src="/image/20181204/development-tools.jpg" alt="development-tools"><p></p>
+<p></p><h2 style="display:inline;" id="2"> 2. 安装httpd</h2><p></p>
+<p></p><h3 style="display:inline;" id="2.1">2.1 准备httpd安装包</h3><br>apche官网下载安装包httpd-2.4.37.tar.gz<a href="http://httpd.apache.org/download.cgi#apache24" target="_blank" rel="noopener">http://httpd.apache.org/download.cgi#apache24</a><br><img src="/image/20181204/download_httpd.jpg" alt="download_httpd"><br>用CyberDuck把httpd-2.4.37.tar.gz从主机传输到虚拟机/root目录下<br><img src="/image/20181204/cyberduck_httpd.jpg" alt="cyberduck_httpd"><br><code>tar -zxf httpd-2.4.37.tar.gz</code> 解压httpd-2.4.37.tar.gz<br><img src="/image/20181204/extract_httpd.jpg" alt="extract_httpd"><p></p>
+<p></p><h3 style="display:inline;" id="2.2">2.2 安装apr和pcre</h3><br>./configure命令执行/root/httpd-2.4.37 目录下的configure文件<br>提示缺少apr,apr-util,pcre依赖包,接下来介绍源码/yum安装依赖包的步骤<br><img src="/image/20181204/configure.jpg" alt="configure"><p></p>
+<p></p><h4 style="display:inline;" id="2.21">2.21 源码安装apr,apr-util,pcre</h4><br>下载apr和apr-util: <a href="http://apr.apache.org/download.cgi" target="_blank" rel="noopener">http://apr.apache.org/download.cgi</a><br>下载pcre: <a href="https://sourceforge.net/projects/pcre/files/pcre/" target="_blank" rel="noopener">https://sourceforge.net/projects/pcre/files/pcre/</a><br><img src="/image/20181204/download_apr.jpg" alt="download_apr"><br>用CyberDuck把压缩包传到虚拟机并解压<br><img src="/image/20181204/extract_apr.jpg" alt="extract_apr"><p></p>
 <hr>
-<h4 id="源码安装apr"><a href="#源码安装apr" class="headerlink" title="源码安装apr:"></a>源码安装apr:</h4><p>cd apr-1.6.5 1                       转到安装包目录1<br>./configure –prefix=/usr/local/apr     指定安装路径<br>make                                 编译<br>make install                         安装到指定路径</p>
+<h4 id="源码安装apr"><a href="#源码安装apr" class="headerlink" title="源码安装apr:"></a>源码安装apr:</h4><p>转到安装包目录1<br><code>cd apr-1.6.5</code><br>指定安装路径<br><code>./configure --prefix=/usr/local/apr</code><br> 编译<br><code>make</code><br>安装到指定路径<br><code>make install</code> </p>
 <hr>
-<h4 id="源码安装apr-util"><a href="#源码安装apr-util" class="headerlink" title="源码安装apr-util:"></a>源码安装apr-util:</h4><p>cd apr-util-1.6.1<br>//指定安装路径,注意加上–with-apr<br>./configure –prefix=/usr/local/apr-util  –with-apr=/usr/local/apr/bin/apr-1-config<br><img src="/image/20181204/configure-apr-util.jpg" alt="configure-apr-util"><br>//执行make提示expat.h:没有此文件或目录,yum安装expat-devel<br>yum install expat-devel<br>make<br><img src="/image/20181204/yum-expat-devel.jpg" alt="yum-expat-devel"><br>//执行make install提示执行libtool命令<br>libtool –finish /usr/local/apr-util/lib<br>make install<br><img src="/image/20181204/libtool.jpg" alt="libtool"></p>
+<h4 id="源码安装apr-util"><a href="#源码安装apr-util" class="headerlink" title="源码安装apr-util:"></a>源码安装apr-util:</h4><p>指定安装路径,注意加上–with-apr<br><code>cd apr-util-1.6.1</code><br><code>./configure --prefix=/usr/local/apr-util  --with-apr=/usr/local/apr/bin/apr-1-config</code><br><img src="/image/20181204/configure-apr-util.jpg" alt="configure-apr-util"><br>执行make提示expat.h:没有此文件或目录,yum安装expat-devel<br><code>yum install expat-devel</code><br><code>make</code><br><img src="/image/20181204/yum-expat-devel.jpg" alt="yum-expat-devel"><br>执行make install提示执行libtool命令<br><code>libtool --finish /usr/local/apr-util/lib</code><br><code>make install</code><br><img src="/image/20181204/libtool.jpg" alt="libtool"></p>
 <hr>
-<h4 id="源码安装pcre"><a href="#源码安装pcre" class="headerlink" title="源码安装pcre:"></a>源码安装pcre:</h4><p>./configure –prefix=/usr/local/pcre<br>make<br>make install                    </p>
+<h4 id="源码安装pcre"><a href="#源码安装pcre" class="headerlink" title="源码安装pcre:"></a>源码安装pcre:</h4><p><code>./configure --prefix=/usr/local/pcre</code><br><code>make</code><br><code>make install</code>                    </p>
 <hr>
-<h4 id="2-22-yum安装apr和pcre"><a href="#2-22-yum安装apr和pcre" class="headerlink" title="2.22 yum安装apr和pcre"></a>2.22 yum安装apr和pcre</h4><h5 id="yum安装apr"><a href="#yum安装apr" class="headerlink" title="yum安装apr:"></a>yum安装apr:</h5><p>yum search apr    //查看需要安装的pcre依赖<br>yum install  apr apr-devel apr-util apr-util-devel    //安装apr<br><img src="/image/20181204/yum-apr.jpg" alt="yum-apr"></p>
-<h5 id="yum安装pcre"><a href="#yum安装pcre" class="headerlink" title="yum安装pcre:"></a>yum安装pcre:</h5><p>yum search pcre    //查看需要安装的pcre依赖<br>yum install pcre pcre-devel pcre-tools    //安装pcre<br><img src="/image/20181204/yum-pcre.jpg" alt="yum-pcre"></p>
-<hr>
-<h3 id="2-3-源码安装httpd"><a href="#2-3-源码安装httpd" class="headerlink" title="2.3 源码安装httpd"></a>2.3 源码安装httpd</h3><p>//configure提示”error: pcre-config for libpcre not found. PCRE is required and available “,命令加上–with-pcre=/usr/local/pcre<br>./configure –prefix=/usr/local/httpd –with-pcre=/usr/local/pcre<br>make<br>make install<br>//启动apache服务,提示错误不用管<br>/usr/local/httpd/bin/apachectl start<br>//关闭防火墙<br>systemctl stop firewalld<br><img src="/image/20181204/ctl.jpg" alt="ctl"></p>
-<h2 id="3-主机访问网站"><a href="#3-主机访问网站" class="headerlink" title="3 主机访问网站"></a>3 主机访问网站</h2><p>浏览器地址栏输入虚拟机ip 192.168.11.143,显示”It works!”页面,说明apache服务成功启动<br><img src="/image/20181204/itworks.jpg" alt="itworks"></p>
-<p>把本机hexo的public目录下文件传到虚拟机/usr/local/httpd/htdocs目录下<br><img src="/image/20181204/htdocs.jpg" alt="htdocs"></p>
-<p>再次访问192.168.11.143,显示博客页面,搭建成功<br><img src="/image/20181204/blog.jpg" alt="blog"></p>
-
+<p></p><h4 style="display:inline" id="2.22">2.22 yum安装apr和pcre<h4><p></p>
+<h5 id="yum安装apr"><a href="#yum安装apr" class="headerlink" title="yum安装apr:"></a>yum安装apr:</h5><p><code>yum search apr</code> 查看需要安装的pcre依赖<br><code>yum install  apr apr-devel apr-util apr-util-devel</code> 安装apr<br><img src="/image/20181204/yum-apr.jpg" alt="yum-apr"></p>
+<h5 id="yum安装pcre"><a href="#yum安装pcre" class="headerlink" title="yum安装pcre:"></a>yum安装pcre:</h5><p><code>yum search pcre</code> 查看需要安装的pcre依赖<br><code>yum install pcre pcre-devel pcre-tools</code> 安装pcre</p>
+<h2 id=""><a href="#" class="headerlink" title=""></a><img src="/image/20181204/yum-pcre.jpg" alt="yum-pcre"></h2><p></p><h3 style="display:inline" id="2.3">2.3 源码安装httpd</h3><br>configure提示”error: pcre-config for libpcre not found. PCRE is required and available “,命令加上–with-pcre=/usr/local/pcre<br><code>./configure --prefix=/usr/local/httpd --with-pcre=/usr/local/pcre</code><br><code>make</code><br><code>make install</code><br>启动apache服务,提示错误不用管<br><code>/usr/local/httpd/bin/apachectl start</code><br>关闭防火墙<br><code>systemctl stop firewalld</code><br><img src="/image/20181204/ctl.jpg" alt="ctl"><p></p>
+<p></p><h2 style="display:inline" id="3">3. 主机访问网站</h2><br>浏览器地址栏输入虚拟机ip 192.168.11.143,显示”It works!”页面,说明apache服务成功启动<br><img src="/image/20181204/itworks.jpg" alt="itworks"><br>把本机hexo的public目录下文件传到虚拟机/usr/local/httpd/htdocs目录下<br><img src="/image/20181204/htdocs.jpg" alt="htdocs"><br>再次访问192.168.11.143,显示博客页面,搭建成功<br><img src="/image/20181204/blog.jpg" alt="blog"><p></p>
+</h4></h4>
             </div>
 </article>
 
