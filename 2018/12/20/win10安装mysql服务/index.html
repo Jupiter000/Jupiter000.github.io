@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+    <meta name="keywords" content="hexo, autumn">
+    <title>
+        jupiter&#39;s blog
+    </title>
+    <!-- favicon -->
+    
+    <link rel="icon" href="/img/smile.ico">
+    
+    <link rel="stylesheet" href="/css/style.css">
+
+    <!-- highlight -->
+    <link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.12.0/styles/github-gist.min.css">
+    <script src="//cdn.bootcss.com/highlight.js/9.2.0/highlight.min.js"></script>
+    <script>
+        hljs.initHighlightingOnLoad()
+    </script>
+    <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/frontendsophie/hexo-infinite-scroll@1.0.0/dist/hexo-infinite-scroll.min.css">
+    <script src="https://cdn.jsdelivr.net/gh/frontendsophie/hexo-infinite-scroll@1.0.0/dist/hexo-infinite-scroll.min.js"></script>
+    <script>
+        infiniteScroll()
+
+        // for mobile menu
+        $(function () {
+            $('.social-button').click(function () {
+                if ($('.social-links').hasClass('hide-links')) {
+                    $('.social-links').removeClass('hide-links')
+                } else {
+                    $('.social-links').addClass('hide-links')
+                }
+            })
+        })
+    </script>
+</head>
+
+    <body style="background: url(https://cdn.jsdelivr.net/gh/frontendsophie/hexo-theme-autumn@1.0.0/source/img/button-bg.png) #f3f3f3">
+        <div class="container">
+            <header class="header">
+    <h1 class="title">
+        <a href="/" class="logo">
+            jupiter&#39;s blog
+        </a>
+    </h1>
+    <h2 class="desc">
+        
+    </h2>
+
+    <nav class="links">
+        <button class="social-button">
+            menu
+        </button>
+        <ul class="social-links hide-links">
+            
+                <li>
+                    <a href="https://github.com/Jupiter000">
+                        Github
+                    </a>
+                </li>
+                
+                <li>
+                    <a href="https://www.baidu.com">
+                        LinkedIn
+                    </a>
+                </li>
+                
+        </ul>
+    </nav>
+</header>
+                <main class="main">
+                    <article class="post">
+    
+            <h2 class="post-title">
+                windows安装mysql服务
+            </h2>
+            <ul class="post-date">
+                <li>
+                    2018-12-20
+                </li>
+                <li>
+                    jupiter
+                </li>
+            </ul>
+            <div class="post-content">
+                <p>管理员权限运行cmd<br><img src="/image/win10安装mysql服务/service-denied.png" alt="service-denied"><br>运行services.msc 查看本地服务<br><img src="/image/win10安装mysql服务/services-msc.png" alt="services-msc"><br>mysqld -remove 卸载mysql<br><img src="/image/win10安装mysql服务/mysql-remove-1546561402743.png" alt="mysqld-remove"><br><img src="/image/win10安装mysql服务/mysql-remove-1.png" alt="mysql-remove-1"><br><code>mysqld -install</code> 安装mysql<br>添加path环境变量<code>C:/tools/phpStudy2016/MySQL/bin;</code><br><code>net start mysql</code> 启动mysql服务<br><code>net stop mysql</code> 停止mysql服务<br><img src="/image/win10安装mysql服务/net-s-mysql.png" alt="net-s-mysql"><br>[启动mysql服务报错] 无法启动MYSQL服务”1067 进程意外终止<br>查看windows日志,Failed to normalize the argument for –secure-file-priv<br>notapad++打开C:/tools/phpStudy2016/MySQL/my.ini 最后加上secure_file_priv=’’<br><img src="/image/win10安装mysql服务/secure-file-priv.png" alt="secure-file-priv"><br>secure-file-priv参数用来限制数据导入和导出操作,例如执行LOAD DATA,SELECT…INTO OUTFILE语句和LOAD_FILE()函数,这些操作需要用户具有FILE权限<br>secure_file_priv的值<br>没值     不限制导入 | 导出<br>null      不允许导入 | 导出<br>路径  只能在路径下导入|导出</p>
+<p>show variables like ‘%secure_file_priv%’; 查看secure_file_priv的值,这里为空表示不限制导入|导出<br><img src="/image/win10安装mysql服务/show-variables-like.png" alt="show-variables-like">use runoob;<br>select * from runoob_tb1 into outfile ‘222.txt’;<br>导出,注意默认路径是当前选择的数据库目录<br><img src="/image/win10安装mysql服务/outfile.png" alt="outfile"></p>
+<p>参考文献:<br><a href="https://www.cnblogs.com/c1e4r/articles/8902444.html" target="_blank" rel="noopener">mysql之突破secure_file_priv写shell</a><br><a href="https://blog.csdn.net/m0_37788308/article/details/79965378" target="_blank" rel="noopener">win10下MYSQL的下载、安装以及配置超详解教程</a><br><a href="https://blog.csdn.net/HappyLittleMouse/article/details/81289471" target="_blank" rel="noopener">Windows下MySQL下载与安装</a><br><a href="https://jingyan.baidu.com/article/49ad8bcebe9f7d5834d8faad.html" target="_blank" rel="noopener">如何卸载windows服务</a><br><a href="https://blog.csdn.net/chenallen1025/article/details/8099024/" target="_blank" rel="noopener">无法启动MySQL服务,报错1067,进程意外终止</a><br><a href="https://www.cnblogs.com/yfceshi/p/6897668.html" target="_blank" rel="noopener">无法启动MYSQL服务”1067 进程意外终止”解决的方法——汇总及终极方</a><br><a href="https://segmentfault.com/a/1190000009333563" target="_blank" rel="noopener">MYSQL新特性secure_file_priv对读写文件的影响</a><br><a href="https://blog.csdn.net/HHTNAN/article/details/78520511" target="_blank" rel="noopener">MYSQL数据导出与导入，secure_file_priv参数设置</a></p>
+
+            </div>
+</article>
+
+                </main>
+                <aside class="aside">
+                    <section class="aside-section">
+                        
+    <h1>Categories</h1>
+
+    
+
+                    </section>
+                    <section class="aside-section">
+                        
+    <h1>Archives</h1>
+
+    <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/">2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/">2018</a></li></ul>
+
+
+                    </section>
+                    <section class="aside-section tag">
+                        
+    <h1>Tags</h1>
+
+    
+
+                    </section>
+                </aside>
+        </div>
+    </body>
+
+</html>
